@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Schedules{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1></h1>
+            {{ schedule.coach.firstname }}
+        <a class="btn btn-primary" href="{{ path('schedules') }}"><i class="fa fa-arrow-left"></i> Back to list</a>
+
+    </div>
+{% endblock %}

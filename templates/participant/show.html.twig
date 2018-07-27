@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container my-5">
+        <table class="table">
+            <thead class="mdb-color darken-3">
+            <tr class="text-white">
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row"></th>
+                <td>{{ participant.firstName }}</td>
+                <td>{{ participant.lastName }}</td>
+                <td>{{ participant.email }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{{ path('participants') }}"><i class="fa fa-arrow-left"></i> Back to list</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+participants:
+    path: /participants
+    controller: App\Controller\Admin\ParticipantController:index
+    methods: [GET]
+
+participant_new:
+    path: /participant/new
+    controller: App\Controller\Admin\ParticipantController:new
+    methods: [POST|GET]
+
+participant_show:
+    path: /participant/show/{id}
+    controller: App\Controller\Admin\ParticipantController:show
+    methods: [GET]
+
+participant_update:
+    path: /participant/update/{id}
+    controller: App\Controller\Admin\ParticipantController:update
+    methods: [POST|GET]
+
+participant_delete:
+    path: /participant/delete/{id}
+    controller: App\Controller\Admin\ParticipantController:delete
+    methods: [GET]
+

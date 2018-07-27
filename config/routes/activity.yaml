@@ -1,0 +1,24 @@
+activities:
+    path: /activities
+    controller: App\Controller\Admin\ActivityController::index
+    methods: [GET]
+
+activity_new:
+    path: /activity/new
+    controller: App\Controller\Admin\ActivityController::new
+    methods: [POST|GET]
+
+activity_show:
+    path: /activity/show/{id}
+    controller: App\Controller\Admin\ActivityController::show
+    methods: [GET]
+
+activity_update:
+    path: /activity/update/{id}
+    controller: App\Controller\Admin\ActivityController::update
+    methods: [POST|GET]
+
+activity_delete:
+    path: /activity/delete/{id}
+    controller: App\Controller\Admin\ActivityController::delete
+    methods: [GET]

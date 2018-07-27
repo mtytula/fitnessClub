@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activities{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% include 'activity/admin.html.twig' %}
+    {% else %}
+        {% include 'activity/user.html.twig' %}
+    {% endif %}
+{% endblock %}

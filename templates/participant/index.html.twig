@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participants{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+
+        <h1 class="my-3">Participants</h1>
+
+        {% if participants %}
+            <div class="table-responsive">
+                <table class="table w-auto">
+
+                    <thead class="mdb-color darken-3">
+                    <tr class="text-white">
+                        <th scope="col"></th>
+                        <th scope="col" class="th-sm">First Name</th>
+                        <th scope="col" class="th-sm">Last Name</th>
+                        <th scope="col">Email</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th scope="col"></th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for participant in participants %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ participant.firstName }}</td>
+                            <td>{{ participant.lastName }}</td>
+                            <td>{{ participant.email }}</td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td class="d-flex flex-column flex-md-row" role="group"
+                                    aria-label="participant actions">
+                                    <a class="btn btn-sm btn-secondary"
+                                       href="{{ path('participant_show',{id: participant.id}) }}">Details</a>
+                                    <a class="btn btn-sm btn-primary"
+                                       href="{{ path('participant_update',{id: participant.id}) }}">Edit</a>
+                                    <a class="btn btn-sm btn-danger"
+                                       href="{{ path('participant_delete',{id: participant.id}) }}">Delete</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            No participants to show
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary" href="{{ path('participant_new') }}">
+                <i class="fa fa-plus"></i>
+                Add new participant
+            </a>
+        {% endif %}
+
+    </div>
+{% endblock %}

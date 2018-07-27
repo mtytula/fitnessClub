@@ -1,0 +1,5 @@
+<h1 class="my-4">{{ setting.name }}</h1>
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary pull-right" >{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

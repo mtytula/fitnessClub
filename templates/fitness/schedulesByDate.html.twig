@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container">
+        {% for schedule in schedules %}
+            <div class="card my-4">
+                <div class="card-header bg-primary text-white">
+                    <!--Tabs-->
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="mx-3 nav-item">
+                            <span class="navbar-text">
+                                <h5 class="card-title">{{ schedule.activity.name }}</h5>
+                            </span>
+                        </li>
+                    </ul>
+                    <!--/.Tabs-->
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg"
+                                 alt="Zumba"
+                                 class="img-thumbnail">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row my-4">
+                                <div class="col-sm-6">
+                                    <p class="text-left w-responsive mx-auto">
+                                        <i class="fa fa-calendar"></i>
+                                        Start: {{ schedule.startDate | date('d-m-Y H:i') }}
+                                        <br><br>
+                                        <i class="fa fa-clock-o"></i> End: {{ schedule.endDate | date('d-m-Y H:i') }}
+                                        <br><br>
+                                        <i class="fa fa-user"></i> Coach:
+                                        <a href="{{ path('coach_show', {'id':schedule.coach.id}) }}">
+                                            {{ schedule.coach.firstName }}
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-left w-responsive mx-auto mb-5">
+                                        <i class="fa fa-building-o"></i> Room size: {{ schedule.room.capacity }}
+                                        <br><br>
+                                        <i class="fa fa-users"></i> Participants: {{ schedule.participants | length }} /
+                                        {{ schedule.activity.slots }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-sm-12">
+                            <p class="card-text lead">{{ schedule.activity.description }}</p>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-sm-12 mx-auto">
+                            <a href="{{ path('show_scheduler_activity', {'id':schedule.id}) }}"
+                               class="btn btn-primary pull-right">Become a participant</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

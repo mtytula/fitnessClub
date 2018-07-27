@@ -1,0 +1,6 @@
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary pull-right">{{ button_label|default('Add') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,9 @@
+settings:
+    path: /settings
+    controller: App\Controller\Admin\SettingController::index
+    methods: [GET]
+
+setting_update:
+    path: /setting/update/{id}
+    controller: App\Controller\Admin\SettingController::update
+    methods: [POST|GET]

@@ -1,0 +1,24 @@
+coaches:
+    path: /coaches
+    controller: App\Controller\Admin\CoachController::index
+    methods: [GET]
+
+coach_new:
+    path: /coach/new
+    controller: App\Controller\Admin\CoachController::new
+    methods: [POST|GET]
+
+coach_show:
+    path: /coach/show/{id}
+    controller: App\Controller\Admin\CoachController::show
+    methods: [GET]
+
+coach_update:
+    path: /coach/update/{id}
+    controller: App\Controller\Admin\CoachController::update
+    methods: [POST|GET]
+
+coach_delete:
+    path: /coach/delete/{id}
+    controller: App\Controller\Admin\CoachController::delete
+    methods: [GET]

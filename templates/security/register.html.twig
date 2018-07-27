@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+    <div class="flex-center text-center">
+        <div class="container">
+            <h1 class="my-5 lead">
+                Become a user of fitness club - register an account
+            </h1>
+            {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary pull-right">Register</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

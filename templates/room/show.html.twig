@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ room.name }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ room.name }}</h1>
+
+        <p>Room ID: {{ room.id }}</p>
+        <p>Capacity: {{ room.capacity }}</p>
+
+        <a class="btn btn-primary" href="{{ path('rooms') }}"><i class="fa fa-arrow-left"></i> Back to list</a>
+
+    </div>
+{% endblock %}

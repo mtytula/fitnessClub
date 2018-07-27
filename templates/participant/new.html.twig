@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+    <div class="container my-5">
+        {{ include('participant/_form.html.twig') }}
+        <a class="btn btn-primary" href="{{ path('participants') }}"><i class="fa fa-arrow-left"></i> Back to list</a>
+    </div>
+{% endblock %}

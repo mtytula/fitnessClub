@@ -1,0 +1,55 @@
+security:
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            provider: provider
+            pattern: ^/
+            logout:
+                path: /logout
+                target: /
+            form_login:
+                login_path: /login
+                check_path: /login
+                csrf_token_generator: security.csrf.token_manager
+    providers:
+        provider:
+            entity:
+                class: App\Entity\User
+                property: username
+    encoders:
+        App\Entity\User: bcrypt
+
+    access_control:
+
+    #Schedule
+        - { path: ^/schedule/new, roles: ROLE_ADMIN }
+        - { path: ^/schedule/update, roles: ROLE_ADMIN }
+        - { path: ^/schedule/delete, roles: ROLE_ADMIN }
+
+    #Activity
+        - { path: ^/activity/new, roles: ROLE_ADMIN }
+        - { path: ^/activity/update, roles: ROLE_ADMIN }
+        - { path: ^/activity/delete, roles: ROLE_ADMIN }
+
+    #Coach
+        - { path: ^/coach/new, roles: ROLE_ADMIN }
+        - { path: ^/coach/update, roles: ROLE_ADMIN }
+        - { path: ^/coach/delete, roles: ROLE_ADMIN }
+
+    #Participant
+        - { path: ^/participant/new, roles: ROLE_ADMIN }
+        - { path: ^/participant/update, roles: ROLE_ADMIN }
+        - { path: ^/participant/delete, roles: ROLE_ADMIN }
+
+    #Room
+        - { path: ^/room/new, roles: ROLE_ADMIN }
+        - { path: ^/room/update, roles: ROLE_ADMIN }
+        - { path: ^/room/delete, roles: ROLE_ADMIN }
+
+    #Opinion //Not yet established
+    #   - { path: ^/opinion/new, roles: ROLE_ADMIN }
+    #   - { path: ^/opinion/update, roles: ROLE_ADMIN }
+    #   - { path: ^/opinion/delete, roles: ROLE_ADMIN }

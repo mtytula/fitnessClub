@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coaches{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% include 'coach/admin.html.twig' %}
+    {% else %}
+        {% include 'coach/user.html.twig' %}
+    {% endif %}
+{% endblock %}

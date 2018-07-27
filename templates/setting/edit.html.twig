@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block title %}Edit Setting{% endblock %}
+{% block body %}
+    <div class="container my-5">
+        {{ include('setting/_form.html.twig') }}
+    </div>
+{% endblock %}

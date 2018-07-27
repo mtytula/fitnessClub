@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Activity details{% endblock %}
+{% block body %}
+    <div class="container my-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Slots</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ activity.name }}</td>
+                    <td>{{ activity.description }}</td>
+                    <td>{{ activity.slots }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="activity actions">
+                            <a class="btn btn-sm btn-primary" href="{{ path('activity_update',{id: activity.id}) }}">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="{{ path('activity_delete',{id: activity.id}) }}">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

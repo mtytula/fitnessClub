@@ -1,0 +1,49 @@
+App\Entity\Participant:
+    participant{1..10}:
+        firstName: '<name()>'
+        lastName: '<lastName()>'
+        email: '<email()>'
+App\Entity\Coach:
+    coach{1..10}:
+        firstName: '<name()>'
+        lastName: '<lastName()>'
+        picture: 'default.jpg'
+        description: '<text()>'
+App\Entity\Room:
+    room{1..10}:
+        name: 'room<current()>'
+        capacity: '<numberBetween(20,25)>'
+App\Entity\Activity:
+    activity{1..10}:
+        name: 'ativity<current()>'
+        description: '<text()>'
+        slots: '<numberBetween(20,25)>'
+App\Entity\Opinion:
+    opinion_{@activity1}:
+        activity: '<current()>'
+        content: '<text()>'
+App\Entity\Schedule:
+    sched1:
+        room: '@room1'
+        coach: '@coach1'
+        activity: '@activity1'
+        participants: '@participant{1..10}'
+        start_date: '<date_create()>'
+        end_date: '<dateTimeBetween($start_date,"+2 hours")>'
+App\Entity\User:
+    user{1..5}:
+        username: 'admin<current()>'
+        email: '<current()>test@example.org'
+        password: <("\$2y\$12\$B1NapH/pE5TPZvHUpnUObO6V10A8BzKDZ61ZMfo49jRePi9mBf.yW")>
+        usernameCanonical: 'admin<current()>'
+        emailCanonical: '<current()>admin@example.org'
+        isActive: true
+        roles: [ROLE_ADMIN]
+    user{6..10}:
+        username: 'user<current()>'
+        email: '<current()>test@example.org'
+        password: <("\$2y\$12\$B1NapH/pE5TPZvHUpnUObO6V10A8BzKDZ61ZMfo49jRePi9mBf.yW")>
+        usernameCanonical: 'admin<current()>'
+        emailCanonical: '<current()>admin@example.org'
+        isActive: true
+        roles: [ROLE_USER]

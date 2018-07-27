@@ -1,0 +1,34 @@
+    <div class="container">
+        {% for activity in activities %}
+            <div class="card my-4">
+                <div class="card-header bg-primary text-white">
+                    <!--Tabs-->
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="mx-3 nav-item">
+                            <span class="navbar-text">
+                                <h5 class="card-title">{{ activity.name }}</h5>
+                            </span>
+                        </li>
+                    </ul>
+                    <!--/.Tabs-->
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="https://mdbootstrap.com/img/Photos/Others/photo6.jpg"
+                                 alt="Zumba"
+                                 class="img-thumbnail">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row my-4">
+                                <div class="col-sm-12">
+                                        <p class="card-text lead">{{ activity.description }} {{ activity.description }}</p>
+                                        <i class="fa fa-users"></i> Slots: {{ activity.slots }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>

@@ -1,0 +1,19 @@
+App\Model\Participant:
+    properties:
+        firstName:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 50
+                minMessage: "Too short first name, min {{ limit }}"
+                maxMessage: "You have entered too long first name, max {{ limit }}"
+        lastName:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 50
+                minMessage: "Too short first name, min {{ limit }}"
+                maxMessage: "You have entered too long first name, max {{ limit }}"
+        email:
+            - NotBlank: ~
+            - App\Validator\Constraints\EmailApi: ~

@@ -1,0 +1,24 @@
+rooms:
+    path: /rooms
+    controller: App\Controller\Admin\RoomController::index
+    methods: [GET]
+
+room_new:
+    path: /room/new
+    controller: App\Controller\Admin\RoomController::new
+    methods: [POST|GET]
+
+room_show:
+    path: /room/{id}
+    controller: App\Controller\Admin\RoomController::show
+    methods: [GET]
+
+room_update:
+    path: /room/update/{id}
+    controller: App\Controller\Admin\RoomController::update
+    methods: [POST|GET]
+
+room_delete:
+    path: /room/delete/{id}
+    controller: App\Controller\Admin\RoomController::delete
+    methods: [GET]

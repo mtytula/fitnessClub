@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Room{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-3">Edit Room</h1>
+
+        {{ include('room/_form.html.twig', {'button_label': 'Edit'}) }}
+
+        <a class="btn btn-danger" href="{{ path('room_delete', {'id': room.id}) }}">Delete</a>
+        <a class="btn btn-primary" href="{{ path('rooms') }}"><i class="fa fa-arrow-left"></i> Back to list</a>
+
+    </div>
+
+{% endblock %}

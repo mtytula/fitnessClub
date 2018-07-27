@@ -1,0 +1,25 @@
+App\Model\User:
+    properties:
+        username:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 50
+                minMessage: "Too short username, min {{ limit }}"
+                maxMessage: "You have entered too long username, max {{ limit }}"
+            - Regex:
+                pattern: '/\d/'
+                match: false
+                message: 'Your name cannot contain a number'
+            - App\Validator\Constraints\UniqueCredentials: ~
+        email:
+            - NotBlank: ~
+            - App\Validator\Constraints\EmailApi: ~
+            - App\Validator\Constraints\UniqueCredentials: ~
+        password:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 4096
+                minMessage: "Too short password, min {{ limit }}"
+                maxMessage: "You have entered too long password, max {{ limit }}"

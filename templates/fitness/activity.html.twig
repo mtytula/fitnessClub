@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 mx-0 px-0">
+                <div class="card card-image"
+                     style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg); background-size: cover;">
+                    <div class="text-white text-center py-5 px-4 my-5">
+                        <div>
+                            <h1 class="card-title pt-3 mb-5 font-bold"><strong>{{ schedule.activity.name }}</strong>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <section class="my-5 px-3">
+            <h3 class="font-weight-bold mb-3"><strong>Description of this activity:</strong></h3>
+            <p class="lead text-justify">
+                {{ schedule.activity.description }}
+            </p>
+        </section>
+        <section class="my-5 px-3">
+            <div class="row">
+                <div class="col-lg-5 mb-lg-0 mb-5 text-center">
+                    <div class="avatar mx-auto">
+                        <img src="{{ asset(schedule.coach.picture) }}"
+                             class="rounded-circle z-depth-1" alt="Sample avatar">
+                    </div>
+                    <h5 class="font-weight-bold mt-4 mb-3">Coach</h5>
+                    <p class="text-uppercase blue-text">
+                        <a href="{{ path('coach_show', {id: schedule.coach.id}) }}">
+                            <strong> {{ schedule.coach.firstName }} {{ schedule.coach.lastName }}</strong>
+                        </a>
+                    </p>
+                    <p class="grey-text">{{ schedule.coach.description }}</p>
+                    <ul class="list-unstyled mb-0">
+                        <!-- Facebook -->
+                        <a class="p-2 fa-sm" href="{{ path('coach_show', {id: schedule.coach.id}) }}">
+                            <i class="fa fa-pencil blue-text"></i> Add opinion about this couch
+                        </a>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <h3 class="font mb-3"><strong>Informations:</strong></h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="text-left w-responsive mx-auto mb-5">
+                                <i class="fa fa-calendar"></i> Start: {{ schedule.startDate | date('d-m-Y H:i') }}
+                                <br>
+                                <i class="fa fa-clock-o"></i> Estimating time: {{ estimating_time | date("%h' %i''") }}
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="text-left w-responsive mx-auto mb-5">
+                                <i class="fa fa-building-o"></i> Room size: {{ schedule.room.capacity }}
+                                <br>
+                                <i class="fa fa-users"></i> Free
+                                slots: {{ schedule.activity.slots - schedule.participants | length }}
+                            </p>
+                        </div>
+                    </div>
+
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <div class="container my-5">
+                            <form action="{{ path('add_logged_user_as_participant_into_activity',
+                                {'id':app.request.get('id')}) }}" method="post">
+                                <input type="hidden" name="_csrf_token"
+                                       value="{{ csrf_token('authenticate') }}">
+                                <button type="submit" class="btn btn-primary btn-lg"> Join this activity</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="container my-5">
+                            {{ form_start(
+                                form,
+                                {'attr': {'novalidate': 'novalidate'},
+                                    'action': path('add_participant_into_activity',
+                                    {'id':app.request.get('id')}
+                                )}
+                            ) }}
+                            {{ form_widget(form) }}
+                            <button type="submit" class="btn btn-primary pull-right"> Join</button>
+                            {{ form_end(form) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

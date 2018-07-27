@@ -1,0 +1,36 @@
+    <div class="container">
+        {% for coach in coaches %}
+            <div class="card my-4">
+                <div class="card-header bg-primary text-white">
+                    <!--Tabs-->
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="mx-2 nav-item">
+                            <span class="navbar-text">
+                                <h5 class="card-title">{{ coach.firstName }}  {{ coach.lastName }}</h5>
+                            </span>
+                        </li>
+                        <li class="ml-auto  nav-item">
+                            <a class="btn btn-sm btn-secondary" href="{{ path('coach_show',{id: coach.id}) }}">Details</a>
+                        </li>
+                    </ul>
+                    <!--/.Tabs-->
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="{{ asset(coach.picture) }}"
+                                 alt="Coach picture"
+                                 class="img-thumbnail">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="row my-4">
+                                <div class="col-sm-12">
+                                    <p class="card-text lead">{{ coach.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>

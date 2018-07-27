@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+
+        <h1 class="my-3">Settings</h1>
+
+        {% if settings %}
+            <div class="table-responsive">
+                <table class="table">
+
+                    <thead class="mdb-color darken-3">
+                    <tr class="text-white">
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col" class="d-none d-lg-table-cell">Value</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th scope="col"></th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for setting in settings %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ setting.name }}</td>
+                            <td class="d-none d-lg-table-cell">{{ setting.value }}</td>
+                            <td class="d-flex flex-column flex-md-row" role="group" aria-label="coach actions">
+                                <a class="btn btn-sm btn-primary" href="{{ path('setting_update',{id: setting.id}) }}">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            No settings to show
+        {% endif %}
+    </div>
+{% endblock %}

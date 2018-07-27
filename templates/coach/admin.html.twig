@@ -1,0 +1,53 @@
+    <div class="container my-5">
+
+        <h1 class="my-3">Coaches</h1>
+
+        {% if coaches %}
+            <div class="table-responsive-sm">
+                <table class="table">
+
+                    <thead class="mdb-color darken-3">
+                    <tr class="text-white">
+                        <th scope="col" class="d-none d-sm-table-cell"></th>
+                        <th scope="col" class="d-none d-sm-table-cell">Picture</th>
+                        <th scope="col" class="th-sm">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col" class="d-none d-lg-table-cell">Description</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th scope="col"></th>
+                        {% endif %}
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for coach in coaches %}
+                        <tr>
+                            <th scope="row" class="d-none d-sm-table-cell">{{ loop.index }}</th>
+                            <td class="d-none d-sm-table-cell"><img src="{{ asset(coach.picture) }}"></td>
+                            <td>{{ coach.firstName }}</td>
+                            <td>{{ coach.lastName }}</td>
+                            <td class="d-none d-lg-table-cell">{{ coach.description }}</td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td class="d-flex flex-column flex-md-row" role="group" aria-label="coach actions">
+                                    <a class="btn btn-sm btn-secondary" href="{{ path('coach_show',{id: coach.id}) }}">Details</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ path('coach_update',{id: coach.id}) }}">Edit</a>
+                                    <a class="btn btn-sm btn-danger" href="{{ path('coach_delete',{id: coach.id}) }}">Delete</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            No coaches to show
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary" href="{{ path('coach_new') }}">
+                <i class="fa fa-plus"></i>
+                Add new Coach
+            </a>
+        {% endif %}
+    </div>
+

@@ -1,0 +1,25 @@
+App\Model\Activity:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 255
+                minMessage: 'Your activity name must be at least {{ limit }} characters long'
+                maxMessage: 'Your activity name cannot be longer than {{ limit }} characters'
+        description:
+            - NotBlank:
+                message: You must enter a description
+            - Length:
+                min: 2
+                max: 255
+                minMessage: 'Your description must be at least {{ limit }} characters long'
+                maxMessage: 'Your description cannot be longer than {{ limit }} characters'
+        slots:
+            - NotBlank: ~
+            - LessThanOrEqual:
+                value: 25
+                message: 'Maximum slots for your activity is {{ compared_value }}'
+            - GreaterThanOrEqual:
+                value: 2
+                message: 'Minimum slots for your activity should be greater than {{ compared_value }}'

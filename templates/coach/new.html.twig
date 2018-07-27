@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block title %}New Coach{% endblock %}
+{% block body %}
+    <div class="container my-5">
+        {{ include('coach/_form.html.twig') }}
+    </div>
+{% endblock %}

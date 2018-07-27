@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Schedules{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+
+        <h1 class="my-3">Schedules</h1>
+
+        {% if schedules %}
+            <div class="table-responsive">
+                <table class="table">
+
+                    <thead class="mdb-color darken-3">
+                        <tr class="text-white">
+                            <th class="d-none d-sm-table-cell"></th>
+                            <th>Activity</th>
+                            <th>Room</th>
+                            <th>Coach</th>
+                            <th class="th-lg">Takes place</th>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <th scope="col"></th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for schedule in schedules %}
+
+                        <tr>
+                            <th scope="row" class="d-none d-sm-table-cell">{{ loop.index }}</th>
+                            <td>{{ schedule.getActivity().name }} </td>
+                            <td>{{ schedule.getRoom().name }}</td>
+                            <td>{{ schedule.getCoach().lastName }}</td>
+                            <td>{{ schedule.startDate|date('d.m.Y') }}
+                                <div class="font-weight-bold"> {{ schedule.startDate|date('H:i') }}
+                                    - {{ schedule.endDate|date('H:i') }} </div>
+                            </td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td class="d-flex flex-column flex-md-row" role="group" aria-label="schedule actions">
+                                    <a class="btn btn-sm btn-secondary"
+                                       href="{{ path('schedule_show',{id: schedule.id}) }}">Details</a>
+                                    <a class="btn btn-sm btn-primary"
+                                       href="{{ path('schedule_update', {'id': schedule.id}) }}">Edit</a>
+                                    <a class="btn btn-sm btn-danger"
+                                       href="{{ path('schedule_delete', {'id': schedule.id}) }}">Delete</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+        {% else %}
+            No schedules to show
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('schedule_new') }}" class="btn btn-primary">
+                <i class="fa fa-plus"></i>
+                Add new schedule
+            </a>
+        {% endif %}
+
+    </div>
+{% endblock %}

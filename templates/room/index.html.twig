@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rooms{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+
+        <h1 class="my-3">Rooms</h1>
+
+        {% if rooms %}
+            <div class="table-responsive">
+                <table class="table">
+
+                    <thead class="mdb-color darken-3">
+                        <tr class="text-white">
+                            <th></th>
+                            <th>Name</th>
+                            <th>Capacity</th>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <th></th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for room in rooms %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ room.name }}</td>
+                            <td>{{ room.capacity }}</td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td class="d-flex flex-column flex-md-row" role="group" aria-label="room actions">
+                                    <a class="btn btn-sm btn-secondary" href="{{ path('room_show',{id: room.id}) }}">Details</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ path('room_update', {'id': room.id}) }}">Edit</a>
+                                    <a class="btn btn-sm btn-danger" href="{{ path('room_delete', {'id': room.id}) }}">Delete</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            No rooms to show
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('room_new') }}" class="btn btn-primary">
+                <i class="fa fa-plus"></i>
+                Add new room
+            </a>
+        {% endif %}
+
+    </div>
+{% endblock %}

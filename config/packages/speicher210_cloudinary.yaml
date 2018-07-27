@@ -1,0 +1,8 @@
+speicher210_cloudinary:
+    url: '%env(CLOUDINARY_URL)%'
+    cloud_name: '%env(CLOUD_NAME)%'
+    access_identifier:
+        api_key: '%env(CLOUDINARY_API_KEY)%'
+        api_secret: '%env(CLOUDINARY_API_SECRET)%'
+    options:
+        secure: true

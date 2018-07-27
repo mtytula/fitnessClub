@@ -1,0 +1,49 @@
+schedules:
+    path: /schedules
+    controller: App\Controller\Admin\ScheduleController::index
+    methods: [GET]
+
+schedules_by_date:
+    path: /schedules/{date}
+    controller: App\Controller\ScheduleController::showSchedulesByDate
+    methods: [GET]
+
+schedule_new:
+    path: /schedule/new
+    controller: App\Controller\Admin\ScheduleController::new
+    methods: [POST|GET]
+
+schedule_show:
+    path: /schedule/{id}
+    controller: App\Controller\Admin\ScheduleController::show
+    methods: [GET]
+
+schedule_update:
+    path: /schedule/update/{id}
+    controller: App\Controller\Admin\ScheduleController::update
+    methods: [POST|GET]
+
+schedule_delete:
+    path: /schedule/delete/{id}
+    controller: App\Controller\Admin\ScheduleController::delete
+    methods: [GET]
+
+scheduler:
+    path: /scheduler
+    controller: App\Controller\ScheduleController::scheduler
+    methods: [GET]
+
+show_scheduler_activity:
+    path: /scheduler/activity/{id}
+    controller: App\Controller\ScheduleController::showSchedulerActivity
+    methods: [GET]
+
+add_participant_into_activity:
+    path: /scheduler/activity/{id}/assign-participant
+    controller: App\Controller\ScheduleController::addParticipantIntoSchedulerActivity
+    methods: [POST]
+
+add_logged_user_as_participant_into_activity:
+    path: /scheduler/activity/{id}/assign-user
+    controller: App\Controller\ScheduleController::addUserAsParticipantIntoSchedulerActivity
+    methods: [POST]

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top indigo">
+    <a class="navbar-brand" href="{{ path('home') }}">Fitness Club</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto mt-lg-0">
+            <li class="nav-item {% if app.request.get('_route') == 'coaches' %} active {% endif %}">
+                <a class="nav-link" href="{{ path('coaches') }}">Coaches</a>
+            </li>
+            <li class="nav-item {% if app.request.get('_route') == 'activities' %} active {% endif %}">
+                <a class="nav-link" href="{{ path('activities') }}">Activities</a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item {% if app.request.get('_route') == 'rooms' %} active {% endif %} ">
+                <a class="nav-link" href="{{ path('rooms') }}">Rooms</a>
+            </li>
+            <li class="nav-item {% if app.request.get('_route') == 'participants' %} active {% endif %}">
+                <a class="nav-link" href="{{ path('participants') }}">Participants</a>
+            </li>
+            <li class="nav-item {% if app.request.get('_route') == 'schedules' %} active {% endif %}">
+                <a class="nav-link" href="{{ path('schedules') }}">Schedules</a>
+            </li>
+            {% endif %}
+        </ul>
+
+        <ul class="navbar-nav mr-3 mt-lg-0">
+            {% if app.user %}
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi, {{ app.user.username }}</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('settings') }}" class="dropdown-item">Settings</a>
+                            <div class="dropdown-divider"></div>
+                            {% endif %}
+                            <a href="{{ path('logout') }}" class="dropdown-item">Log out</a>
+                        </div>
+                    </div>
+                </li>
+            {% else %}
+                {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('register') }}">Register</a>
+                </li>
+                <li class="nav-item {% if app.request.get('_route') == 'login' %} active {% endif %}">
+                    <a class="nav-link" href="{{ path('login') }}">Log in</a>
+                </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+</nav>

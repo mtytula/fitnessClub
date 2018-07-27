@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="calendar-wrap" class="my-5">
+        <header>
+            <h1>Scheduler for {{ "now" | date('F Y') }}</h1>
+        </header>
+        <div class="calendar">
+            <ul class="weekdays">
+                <li>Sunday</li>
+                <li>Monday</li>
+                <li>Tuesday</li>
+                <li>Wednesday</li>
+                <li>Thursday</li>
+                <li>Friday</li>
+                <li>Saturday</li>
+            </ul>
+            <ul class="days">
+                {% set h = false %}
+                {% set dayCounter = 0 %}
+
+                {% for i in 0..( numberOfDays - 1) %}
+                    {% if i == numericFirstDate %}
+                        {% set h = true %}
+                    {% endif %}
+                    {% if h == true %}
+                        {% set dayCounter = dayCounter+1 %}
+
+                        <li class="day">
+                            <div class="date">{{ dayCounter }}</div>
+                            {% set oneDay = 0 %}
+                            {% for schedule in schedules %}
+                                {% if dayCounter == schedule.getStartDate() | date('d') %}
+                                    {% if oneDay < 2 %}
+                                    <a href="{{ path('show_scheduler_activity', {id: schedule.getId()}) }}">
+                                        <div class="event">
+                                            {% set oneDay = oneDay +1 %}
+                                            <div class="event-desc">
+                                                {{ schedule.activity.name }}
+                                            </div>
+                                            <div class="event-time">
+                                                {{ schedule.startDate|date('H:i') }} to {{ schedule.endDate |date('H:i') }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    {% else %}
+                                        <a class="more-activities small"
+                                           href="{{ path('schedules_by_date',
+                                               {'date':schedule.startDate()| date('d-m-Y') })
+                                           }}">See more activities...</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </li>
+                    {% else %}
+                        <li class="day other-month"></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/calendar.css') }}">
+{% endblock %}

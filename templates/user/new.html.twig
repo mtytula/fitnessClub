@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add user{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1 class="my-3">Add user</h1>
+
+        {{ include('user/_form.html.twig') }}
+
+        <a class="btn btn-primary" href="{{ path('users') }}"><i class="fa fa-arrow-left"></i> Back to list</a>
+
+    </div>
+{% endblock %}

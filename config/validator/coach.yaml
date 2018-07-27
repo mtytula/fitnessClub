@@ -1,0 +1,31 @@
+App\Model\Coach:
+    properties:
+        firstName:
+            - NotBlank:
+                message: 'You must enter your first name'
+            - Length:
+                min: 2
+                max: 255
+                minMessage: 'Your first name must be at least {{ limit }} characters long'
+                maxMessage: 'Your first name cannot be longer than {{ limit }} characters'
+        lastName:
+            - NotBlank:
+                message: 'You must enter your last name'
+            - Length:
+                min: 2
+                max: 255
+                minMessage: 'Your last name must be at least {{ limit }} characters long'
+                maxMessage: 'Your last name cannot be longer than {{ limit }} characters'
+        description:
+            - NotBlank:
+                message: 'You must enter a description'
+        picture:
+            - Image:
+                maxSize: 2M
+                maxSizeMessage: 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}'
+                maxHeight: 800
+                maxWidthMessage: 'The image width is too big ({{ width }}px). Allowed maximum width is {{ max_width }}px.'
+                maxWidth: 800
+                maxHeightMessage: 'The image height is too big ({{ height }}px). Allowed maximum height is {{ max_height }}px.'
+                mimeTypes: [image/png, image/jpeg]
+                mimeTypesMessage: 'The extension of the file is invalid ({{ type }}). Allowed mime types are {{ types }}.'

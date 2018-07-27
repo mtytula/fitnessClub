@@ -1,0 +1,12 @@
+logout:
+    path: /logout
+
+login:
+    path: /login
+    controller: App\Controller\Admin\SecurityController::login
+    methods: [GET|POST]
+
+register:
+    path: /register
+    controller: App\Controller\Admin\SecurityController:register
+    methods: [GET|POST]
